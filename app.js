@@ -9,7 +9,7 @@ const resultCount = document.getElementById('resultCount');
 const editDialog = document.getElementById('editDialog');
 const editFields = document.getElementById('editFields');
 
-fetch('data/providers.json')
+fetch('./data/providers.json?v=' + Date.now())
   .then(r => r.json())
   .then(data => {
     providers = normalizeProviders(data);
