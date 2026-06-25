@@ -458,4 +458,3 @@ function escapeAttr(s) { return escapeHtml(s).replaceAll('\n', ' '); }
  
 [searchInput, cityFilter, hsrmFilter].forEach(el => el.addEventListener('input', renderProviders));
 document.getElementById('clearFilters').addEventListener('click', () => { searchInput.value = ''; cityFilter.value = ''; hsrmFilter.value = ''; renderProviders(); });
- 
