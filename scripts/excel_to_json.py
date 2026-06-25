@@ -31,7 +31,7 @@ from openpyxl import load_workbook
 
 ROOT = Path(__file__).resolve().parents[1]
 WORKBOOK_PATH = ROOT / "source" / "provider_master.xlsx"
-OUTPUT_PATH = ROOT / "data" / "providers.json"
+OUTPUT_PATH = ROOT / "providers.json"  # FIX: was Path("proivders.json") — typo + wrong location
 
 # Tabs that should not be treated as provider specialty tabs.
 IGNORE_SHEETS = {
