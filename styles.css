@@ -86,3 +86,67 @@ dialog { border: none; border-radius: 12px; max-width: 760px; width: 92%; box-sh
   max-width:900px;
 }
 
+.brand-center {
+  text-align: center;
+}
+
+.site-logo-large {
+  width: 170px;
+  max-width: 90%;
+  height: auto;
+  display: block;
+  margin: 0 auto 12px;
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 2.6rem;
+}
+
+.site-header .subtitle {
+  margin: 8px auto 0;
+  max-width: 700px;
+}
+
+.provider-card.open {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1100px, 92vw);
+  max-height: 88vh;
+  overflow-y: auto;
+  z-index: 9999;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  border: 3px solid #005ea8;
+}
+
+.provider-card.open .card-body {
+  padding: 28px;
+}
+
+.provider-card.open h2 {
+  font-size: 2rem;
+}
+
+.provider-card.open .details {
+  display: block;
+}
+
+.provider-card.open .details-grid {
+  display grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.provider-card.open::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: -1;
+}
+
+.provider-card.open .card-actions {
+  margin-top: 18px;
+}
