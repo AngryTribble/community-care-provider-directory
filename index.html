@@ -1,1 +1,55 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Care Compass</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">Battle Creek VA Community Care</p>
+      <h1>Community Care Compass</h1>
+      <p class="subtitle">A shared provider directory for public office information, referral coordination, and consistent referral comments.</p>
+    </div>
+  </header>
+
+  <section class="notice">
+    <strong>Public Information Only:</strong> Do not enter Veteran names, SSNs, DOBs, appointment details, medical information, PHI, or PII into this system.
+  </section>
+
+  <main class="container">
+    <section class="toolbar">
+      <input id="searchInput" type="search" placeholder="Search providers, city, specialty, phone, fax, NPI, notes..." />
+      <select id="cityFilter"><option value="">All Cities</option></select>
+      <select id="hsrmFilter"><option value="">All HSRM</option><option>Active</option><option>Unknown</option><option>Issue</option><option>Not Found</option></select>
+      <button id="clearFilters">Clear</button>
+    </section>
+
+    <section class="results-summary">
+      <span id="resultCount">Loading providers...</span>
+    </section>
+
+    <section id="providerGrid" class="provider-grid"></section>
+  </main>
+
+  <dialog id="editDialog">
+    <form method="dialog" id="editForm">
+      <div class="dialog-header">
+        <h2>Edit Provider</h2>
+        <button class="icon-button" value="cancel">×</button>
+      </div>
+      <p class="form-warning">Confirm all updates contain public provider/office information only. No Veteran PHI/PII.</p>
+      <div id="editFields" class="edit-fields"></div>
+      <div class="dialog-actions">
+        <button value="cancel">Cancel</button>
+        <button id="copyJsonButton" type="button" class="primary">Copy Updated JSON</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
