@@ -26,62 +26,59 @@ fetch('./providers.json?v=' + Date.now())
   });
 
 function normalizeProviders(data) {
-  return data.map((p, i) => ({
-    id: p.id || slugify(`${p.officeName || 'provider'}-${i}`),
-    officeName: p.officeName || p.careSite || p.caresite || 'Unknown Care Site',
-    providerName: p.providerName || p.provider || '',
-    providerNpi: p.providerNpi || p.providerIdentifier || p.npi || '',
-    careSiteNpi: p.careSiteNpi || '',
-    specialties: p.specialties || [p.specialty || 'Unknown Specialty'],
-    address: typeof p.address === 'object'
-      ? p.address
-      : {
-          street: p.address || p.careSiteAddress || '',
-          city: p.citySection || p.careSiteCity || '',
-          state: p.careSiteState || 'MI',
-          zip: p.careSiteZipCode || ''
-        },
-    phone: p.phone || p.careSitePhoneNumber || '',
-    fax: p.fax || p.careSiteFax || '',
-    email: p.email || '',
-    medicalRecordsFax: p.medicalRecordsFax || '',
-    status: p.status || '',
-    epsStatus: p.epsStatus || p.compassEpsStatus || '',
-    hsrmStatus: p.hsrmStatus || p.compassHsrmStatus || '',
-    acceptingNewReferrals: p.acceptingNewReferrals || p.compassAcceptingStatus || '',
-    preferredReferralMethod: p.preferredReferralMethod || 'Fax',
-    organization: p.organization || p.organizationGroup || '',
-    telehealthAvailable: p.telehealthAvailable || '',
-    coverageCounty: p.coverageCounty || '',
-    notes: Array.isArray(p.notes) ? p.notes : (p.notes ? [p.notes] : []),
-    restrictions: Array.isArray(p.restrictions) ? p.restrictions : (p.restrictions ? [p.restrictions] : [])
-    searchText: [
-  p.officeName,
-  p.careSite,
-  p.caresite,
-  p.providerName,
-  p.provider,
-  p.providerNpi,
-  p.providerIdentifier,
-  p.npi,
-  p.specialty,
-  p.specialtyGroup,
-  p.organizationGroup,
-  p.address?.street,
-  p.address?.city,
-  p.address?.state,
-  p.address?.zip,
-  p.careSiteAddress,
-  p.careSiteCity,
-  p.careSiteState,
-  p.careSiteZipCode,
-  p.phone,
-  p.careSitePhoneNumber,
-  p.fax,
-  p.careSiteFax,
-  p.email
-].filter(Boolean).join(' ').toLowerCase()
-  }));
+  return data.map((p, i) => {
+    const normalized = {
+      id: p.id || slugify(`${p.officeName || 'provider'}-${i}`),
+      officeName: p.officeName || p.careSite || p.caresite || 'Unknown Care Site',
+      providerName: p.providerName || p.provider || '',
+      providerNpi: p.providerNpi || p.providerIdentifier || p.npi || '',
+      careSiteNpi: p.careSiteNpi || '',
+      specialties: p.specialties || [p.specialty || 'Unknown Specialty'],
+      address: typeof p.address === 'object'
+        ? p.address
+        : {
+            street: p.address || p.careSiteAddress || '',
+            city: p.citySection || p.careSiteCity || '',
+            state: p.careSiteState || 'MI',
+            zip: p.careSiteZipCode || ''
+          },
+      phone: p.phone || p.careSitePhoneNumber || '',
+      fax: p.fax || p.careSiteFax || '',
+      email: p.email || '',
+      medicalRecordsFax: p.medicalRecordsFax || '',
+      status: p.status || '',
+      epsStatus: p.epsStatus || p.compassEpsStatus || '',
+      hsrmStatus: p.hsrmStatus || p.compassHsrmStatus || '',
+      acceptingNewReferrals: p.acceptingNewReferrals || p.compassAcceptingStatus || '',
+      preferredReferralMethod: p.preferredReferralMethod || 'Fax',
+      organization: p.organization || p.organizationGroup || '',
+      telehealthAvailable: p.telehealthAvailable || '',
+      coverageCounty: p.coverageCounty || '',
+      notes: Array.isArray(p.notes) ? p.notes : (p.notes ? [p.notes] : []),
+      restrictions: Array.isArray(p.restrictions) ? p.restrictions : (p.restrictions ? [p.restrictions] : [])
+    };
+
+    normalized.searchText = [
+      normalized.officeName,
+      normalized.providerName,
+      normalized.providerNpi,
+      normalized.careSiteNpi,
+      normalized.specialties.join(' '),
+      normalized.address.street,
+      normalized.address.city,
+      normalized.address.state,
+      normalized.address.zip,
+      normalized.phone,
+      normalized.fax,
+      normalized.email,
+      normalized.organization,
+      normalized.coverageCounty,
+      normalized.notes.join(' '),
+      normalized.restrictions.join(' ')
+    ].filter(Boolean).join(' ').toLowerCase();
+
+    return normalized;
+  });
 }
 
 function populateFilters() {
