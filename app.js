@@ -327,14 +327,28 @@ function addToClipboard(title, subtitle, text) {
 }
 
 function renderClipboard() {
-  clipboardItems.innerHTML = clipboardHistory.map((item, index) => `
-    <div class="clipboard-card">
-      <strong>${escapeHtml(item.title)}</strong>
-      <span>${escapeHtml(item.subtitle)}</span>
-      <small>${escapeHtml(item.time)}</small>
-      <button onclick="recopyClipboard(${index})">Copy Again</button>
-    </div>
-  `).join('');
+  if (!clipboardHistory.length) {
+    clipboardItems.innerHTML = `<p class="clipboard-empty">Nothing copied yet.</p>`;
+    return;
+  }
+
+  clipboardItems.innerHTML = `
+    ${clipboardHistory.map((item, index) => `
+      <div class="clipboard-card">
+        <strong>${escapeHtml(item.title)}</strong>
+        <span>${escapeHtml(item.subtitle)}</span>
+        <small>${escapeHtml(item.time)}</small>
+        <button onclick="recopyClipboard(${index})">Copy Again</button>
+      </div>
+    `).join('')}
+
+    <button class="clear-clipboard-btn" onclick="clearClipboard()">Clear Clipboard</button>
+  `;
+}
+
+function clearClipboard() {
+  clipboardHistory = [];
+  renderClipboard();
 }
 
 function recopyClipboard(index) {
