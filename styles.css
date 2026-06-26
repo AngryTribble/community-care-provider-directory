@@ -150,3 +150,142 @@ dialog { border: none; border-radius: 12px; max-width: 760px; width: 92%; box-sh
 .provider-card.open .card-actions {
   margin-top: 18px;
 }
+
+.card-topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.office-providers {
+  margin-top: 14px;
+  border-top: 1px solid #d8e1ea;
+  padding-top: 12px;
+}
+
+.office-providers h3 {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  color: #16395b;
+}
+
+.office-provider-row,
+.profile-provider-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid #eef2f6;
+}
+
+.office-provider-row span,
+.profile-provider-row span {
+  display: block;
+  font-size: 0.8rem;
+  color: #667;
+}
+
+.profile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 9999;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.profile-overlay.hidden {
+  display: none;
+}
+
+.profile-panel {
+  width: min(900px, 78vw);
+  height: 100vh;
+  background: #fff;
+  overflow-y: auto;
+  padding: 28px;
+  box-shadow: -18px 0 40px rgba(0,0,0,.28);
+}
+
+.profile-close {
+  float: right;
+  font-size: 2rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.profile-panel h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: #003e73;
+}
+
+.profile-subtitle {
+  color: #596b7b;
+  font-weight: 600;
+}
+
+.profile-panel section {
+  border-top: 1px solid #dde6ef;
+  padding: 18px 0;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid #dde6ef;
+  padding-top: 18px;
+}
+
+.provider-clipboard {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 280px;
+  max-height: 420px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #c9d8e6;
+  border-radius: 14px;
+  box-shadow: 0 12px 35px rgba(0,0,0,.18);
+  padding: 14px;
+  z-index: 9000;
+}
+
+.provider-clipboard h3 {
+  margin: 0 0 10px;
+  color: #003e73;
+}
+
+.clipboard-empty {
+  color: #667;
+  font-size: 0.9rem;
+}
+
+.clipboard-card {
+  border-top: 1px solid #e7edf3;
+  padding: 10px 0;
+}
+
+.clipboard-card strong,
+.clipboard-card span,
+.clipboard-card small {
+  display: block;
+}
+
+.clipboard-card span {
+  color: #526477;
+  font-size: 0.88rem;
+}
+
+.clipboard-card small {
+  color: #777;
+  margin: 3px 0 6px;
+}
+
+.muted {
+  color: #667;
+  font-style: italic;
+}
