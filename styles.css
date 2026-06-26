@@ -289,3 +289,11 @@ dialog { border: none; border-radius: 12px; max-width: 760px; width: 92%; box-sh
   color: #667;
   font-style: italic;
 }
+
+.clear-clipboard-btn {
+  width: 100%;
+  margin-top: 10px;
+  background: #fff;
+  color: #003e73;
+  border: 1px solid #003e73;
+}
