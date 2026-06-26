@@ -426,7 +426,15 @@ function escapeAttr(s) {
   return escapeHtml(s).replaceAll('\n', ' ');
 }
 
-[searchInput, cityFilter, hsrmFilter].forEach(el => el.addEventListener('input', renderOffices));
+let searchTimer;
+
+searchInput.addEventListener('input', () => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(renderOffices, 250);
+});
+
+cityFilter.addEventListener('input', renderOffices);
+hsrmFilter.addEventListener('input', renderOffices);
 
 document.getElementById('clearFilters').addEventListener('click', () => {
   searchInput.value = '';
