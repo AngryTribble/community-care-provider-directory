@@ -101,13 +101,18 @@ function groupProvidersByOffice(providerList) {
     p.notes.forEach(n => office.notes.add(n));
     p.restrictions.forEach(r => office.restrictions.add(r));
 
-    if (p.providerName || p.providerNpi) {
-      office.providers.push({
-        providerName: p.providerName,
-        providerNpi: p.providerNpi
-      });
-    }
+const providerNameClean = String(p.providerName || '').trim();
+const officeNameClean = String(p.officeName || '').trim();
+
+if (
+  providerNameClean &&
+  providerNameClean.toLowerCase() !== officeNameClean.toLowerCase()
+) {
+  office.providers.push({
+    providerName: providerNameClean,
+    providerNpi: p.providerNpi || ''
   });
+}
 
   return [...map.values()].map(o => ({
     ...o,
