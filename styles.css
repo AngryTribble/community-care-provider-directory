@@ -297,3 +297,36 @@ dialog { border: none; border-radius: 12px; max-width: 760px; width: 92%; box-sh
   color: #003e73;
   border: 1px solid #003e73;
 }
+
+.search-start-panel {
+  grid-column: 1 / -1;
+  background: white;
+  border: 1px solid #d7e0ea;
+  border-radius: 18px;
+  padding: 36px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,.08);
+}
+
+.search-start-panel h2 {
+  color: #003e73;
+  margin-top: 0;
+}
+
+.search-hints {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.search-hints span {
+  background: #eef4fb;
+  color: #003e73;
+  border: 1px solid #cbdced;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: .88rem;
+  font-weight: 700;
+}
