@@ -55,6 +55,32 @@ function normalizeProviders(data) {
     coverageCounty: p.coverageCounty || '',
     notes: Array.isArray(p.notes) ? p.notes : (p.notes ? [p.notes] : []),
     restrictions: Array.isArray(p.restrictions) ? p.restrictions : (p.restrictions ? [p.restrictions] : [])
+    searchText: [
+  p.officeName,
+  p.careSite,
+  p.caresite,
+  p.providerName,
+  p.provider,
+  p.providerNpi,
+  p.providerIdentifier,
+  p.npi,
+  p.specialty,
+  p.specialtyGroup,
+  p.organizationGroup,
+  p.address?.street,
+  p.address?.city,
+  p.address?.state,
+  p.address?.zip,
+  p.careSiteAddress,
+  p.careSiteCity,
+  p.careSiteState,
+  p.careSiteZipCode,
+  p.phone,
+  p.careSitePhoneNumber,
+  p.fax,
+  p.careSiteFax,
+  p.email
+].filter(Boolean).join(' ').toLowerCase()
   }));
 }
 
@@ -71,19 +97,58 @@ function populateFilters() {
 }
 
 function renderProviders() {
-  const q = searchInput.value.toLowerCase();
+  const q = searchInput.value.trim().toLowerCase();
   const city = cityFilter.value;
   const hsrm = hsrmFilter.value;
+  const hasFilter = city || hsrm;
 
-  const filtered = providers.filter(p => {
-    const haystack = JSON.stringify(p).toLowerCase();
-    return (!q || haystack.includes(q)) &&
-           (!city || p.address.city === city) &&
-           (!hsrm || p.hsrmStatus === hsrm);
-  });
+  if (q.length < 2 && !hasFilter) {
+    resultCount.textContent = `${providers.length.toLocaleString()} providers loaded`;
+    grid.innerHTML = `
+      <section class="search-start-panel">
+        <h2>Search Community Care Providers</h2>
+        <p>Search over ${providers.length.toLocaleString()} in-network provider entries.</p>
+        <p>Enter at least <strong>2 characters</strong> or select a filter to begin.</p>
+        <div class="search-hints">
+          <span>Provider Name</span>
+          <span>Care Site</span>
+          <span>Specialty</span>
+          <span>City</span>
+          <span>ZIP</span>
+          <span>Phone</span>
+          <span>Fax</span>
+          <span>NPI</span>
+        </div>
+      </section>
+    `;
+    return;
+  }
 
-  resultCount.textContent = `${filtered.length} provider${filtered.length === 1 ? '' : 's'} found`;
-  grid.innerHTML = filtered.map(p => providerCardTemplate(p, providers.indexOf(p))).join('');
+  const matches = [];
+
+  for (const p of providers) {
+    if (city && p.address.city !== city) continue;
+    if (hsrm && p.hsrmStatus !== hsrm) continue;
+    if (q && !p.searchText.includes(q)) continue;
+
+    matches.push(p);
+
+    if (matches.length >= 100) break;
+  }
+
+  const totalMatches = providers.filter(p => {
+    if (city && p.address.city !== city) return false;
+    if (hsrm && p.hsrmStatus !== hsrm) return false;
+    if (q && !p.searchText.includes(q)) return false;
+    return true;
+  }).length;
+
+  resultCount.textContent =
+    totalMatches > 100
+      ? `Showing first 100 of ${totalMatches.toLocaleString()} matching providers. Refine your search to narrow results.`
+      : `${totalMatches.toLocaleString()} provider${totalMatches === 1 ? '' : 's'} found`;
+
+  grid.innerHTML = matches.map(p => providerCardTemplate(p, providers.indexOf(p))).join('');
 }
 
 function providerCardTemplate(p, index) {
