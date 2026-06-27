@@ -17,6 +17,7 @@ fetch('./providers.json?v=' + Date.now())
   .then(r => r.json())
   .then(data => {
     providers = normalizeProviders(data);
+    updateHeaderStats();
     populateFilters();
     renderProviders();
   })
@@ -79,6 +80,16 @@ function normalizeProviders(data) {
 
     return normalized;
   });
+}
+
+function updateHeaderStats() {
+  const providerCount = providers.length;
+  const careSites = new Set(providers.map(p => `${p.officeName}|${p.address.street}|${p.address.city}|${p.address.zip}`));
+  const cities = new Set(providers.map(p => p.address.city).filter(Boolean));
+
+  document.getElementById('headerProviderCount').textContent = providerCount.toLocaleString();
+  document.getElementById('headerCareSiteCount').textContent = careSites.size.toLocaleString();
+  document.getElementById('headerCityCount').textContent = cities.size.toLocaleString();
 }
 
 function populateFilters() {
