@@ -330,3 +330,30 @@ dialog { border: none; border-radius: 12px; max-width: 760px; width: 92%; box-sh
   font-size: .88rem;
   font-weight: 700;
 }
+
+.card-divider {
+  border: 0;
+  border-top: 1px solid #d8e1ea;
+  margin: 10px 0 12px;
+}
+
+.provider-subline {
+  margin: 6px 0 14px;
+}
+
+.provider-subline strong {
+  display: block;
+  font-size: 1.05rem;
+  color: #111827;
+}
+
+.provider-npi {
+  display: block;
+  margin-top: 2px;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.card-actions button:last-child {
+  min-width: 96px;
+}
