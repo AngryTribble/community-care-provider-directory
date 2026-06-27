@@ -357,3 +357,82 @@ dialog { border: none; border-radius: 12px; max-width: 760px; width: 92%; box-sh
 .card-actions button:last-child {
   min-width: 96px;
 }
+
+.option-two-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0;
+  background: white;
+  border-bottom: 5px solid #f9c642;
+  box-shadow: 0 4px 18px rgba(0,0,0,.14);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 26px 36px;
+  flex: 1;
+}
+
+.header-logo {
+  width: 120px;
+  height: auto;
+}
+
+.header-title-block {
+  border-left: 2px solid #005ea8;
+  padding-left: 22px;
+}
+
+.header-title-block h1 {
+  margin: 0;
+  color: #003e73;
+  font-size: 2.2rem;
+}
+
+.header-org {
+  margin: 6px 0 0;
+  color: #2e7d32;
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+
+.header-subtitle {
+  margin: 5px 0 0;
+  color: #374151;
+  font-style: italic;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: linear-gradient(135deg, #003e73, #001f3f);
+  color: white;
+  padding: 24px 34px;
+  min-width: 420px;
+  clip-path: polygon(12% 0, 100% 0, 100% 100%, 0 100%);
+  justify-content: flex-end;
+}
+
+.header-stat {
+  text-align: center;
+  padding: 0 22px;
+  border-left: 1px solid rgba(255,255,255,.35);
+}
+
+.header-stat:first-child {
+  border-left: none;
+}
+
+.header-stat strong {
+  display: block;
+  font-size: 1.55rem;
+}
+
+.header-stat span {
+  font-size: .86rem;
+  opacity: .92;
+}
