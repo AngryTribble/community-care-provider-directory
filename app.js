@@ -165,12 +165,14 @@ function providerCardTemplate(p, index) {
           </div>
         </div>
 
-        <div class="provider-subline">
-          ${escapeHtml(p.providerName || 'Provider not listed')}
-          ${p.providerNpi ? `<span class="npi-pill">NPI: ${escapeHtml(p.providerNpi)}</span>` : ''}
-        </div>
+<div class="meta">${escapeHtml(p.specialties.join(', '))} | ${escapeHtml(cityState || 'Location Unknown')}</div>
 
-        <div class="meta">${escapeHtml(p.specialties.join(', '))} | ${escapeHtml(cityState || 'Location Unknown')}</div>
+<hr class="card-divider">
+
+<div class="provider-subline">
+  <strong>${escapeHtml(p.providerName || 'Provider not listed')}</strong>
+  <span class="provider-npi">NPI: ${escapeHtml(p.providerNpi || 'Not listed')}</span>
+</div>
 
         <div class="info-line"><strong>Address:</strong> ${escapeHtml(addressLine || 'Not listed')}</div>
         <div class="info-line"><strong>Phone:</strong> ${escapeHtml(p.phone || 'Not listed')}</div>
@@ -180,7 +182,7 @@ function providerCardTemplate(p, index) {
         <div class="card-actions">
           <button onclick="openProviderProfile(${index})">View Profile</button>
           <button class="copy-btn" onclick="copyProvider(${index})">Copy</button>
-          <button onclick="openEdit(${index})">Suggest Update</button>
+          <button onclick="openEdit(${index})">Edit</button>
         </div>
       </div>
     </article>`;
